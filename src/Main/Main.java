@@ -26,9 +26,16 @@ public class Main {
         System.out.print("Do you want to hide 500-level status codes? (yes/no): ");
         String hide500Input = scanner.nextLine();
         boolean hide500 = hide500Input.equalsIgnoreCase("yes");
+        
+        System.out.print("Enter a custom User-Agent (or press Enter to use default): ");
+        String userAgent = scanner.nextLine();
 
         // Perform dirbusting
-        Dirbuster.dirbust(baseUrl, wordlistPath, hide400, hide500);
+        if (userAgent.trim().isEmpty()) {
+            Dirbuster.dirbust(baseUrl, wordlistPath, hide400, hide500);
+        } else {
+            Dirbuster.dirbust(baseUrl, wordlistPath, hide400, hide500, userAgent);
+        }
 
         // Close the scanner
         scanner.close();
